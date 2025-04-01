@@ -32,6 +32,12 @@ class MainProgram {
         System.out.println("von Groß zu klein sortiert: " );
         System.out.print("> ");
         showArray(sortArray(numbers, false));
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+    showArray(sortArray(sortArray(numbers, true), false));
     }
 
     private static void fillArray(int[] array, boolean wN, int maxA){
@@ -228,6 +234,9 @@ class MainProgram {
             runCount++;
         }
         return newArray;
+    }
+    private static int[] stalinSort(int[] array, boolean increasing){
+        return new int[array.length];
     }
 
 }
