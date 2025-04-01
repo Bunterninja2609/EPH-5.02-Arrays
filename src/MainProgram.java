@@ -20,6 +20,18 @@ class MainProgram {
         System.out.println("Summe aller Zahlen im Array: " + sumUp(numbers));
         System.out.println("In diesem Array gibt es " + countNegatives(numbers) + " negative Zahlen.");
         System.out.println("Summe der negativen Zahlen: " + sumUpNegatives(numbers));
+        System.out.println("Maximum: " + findMaximum(numbers));
+        System.out.println("Maximum index: " + findMaximumIndex(numbers));
+        System.out.println("Count: " + countMaximum(numbers));
+        System.out.println("Ist sortiert von klein zu groß: " + isSorted(numbers, true));
+        System.out.println("ist sortiert von Groß zu Klein: " + isSorted(numbers, false));
+        System.out.println("Ist Palindrom: " + checkArray(numbers));
+        System.out.println("von Klein zu Groß sortiert: " );
+        System.out.print("> ");
+        showArray(sortArray(numbers, true));
+        System.out.println("von Groß zu klein sortiert: " );
+        System.out.print("> ");
+        showArray(sortArray(numbers, false));
     }
 
     private static void fillArray(int[] array, boolean wN, int maxA){
@@ -42,7 +54,7 @@ class MainProgram {
     private static void showArray(int[] array){
         if(array != null){
             for(int i = 0; i < array.length; i++){
-                System.out.println("Index: "+i+" --- Zahl: "+array[i]);
+                System.out.print("I: "+i+" Z: "+array[i]+", ");
             }
         }
     }
@@ -122,14 +134,15 @@ class MainProgram {
      * Tipp: Versuchen Sie, mit einem Durchlauf durch das Array zu kommen.
      */
     private static int findMaximumIndex(int[] array){
-        int result = array[0];
+        int max = findMaximum(array);
         for (int i = 0; i < array.length; i++) {
-            if (array[i] > array[result]){
-                result = i;
+            if (array[i] == max){
+                return i;
             }
         }
-        return result;
+        return 0;
     }
+
 
 
     /** 6. Bestimmen der Häufigkeit des Maximums in einem Feld
@@ -153,9 +166,11 @@ class MainProgram {
      * übergeben bekommt. Die Methode isSorted soll true zurückgeben, falls die im Array enthaltenen Werte aufsteigend sortiert sind.
      * Sonst soll false zurückgegeben werden.
      */
-    private static boolean isSorted(int[] array){
+    private static boolean isSorted(int[] array, boolean increasing){
         for (int i = 1; i < array.length; i++) {
-            if (array[i] < array[i-1]){
+            if (array[i] < array[i-1] && increasing){
+                return false;
+            } else if (array[i] > array[i-1] && !increasing){
                 return false;
             }
         }
@@ -170,6 +185,14 @@ class MainProgram {
      * ob es sich bei dem Array um ein Palindrom handelt.
      * Die Methode soll einen Wert des Typs boolean zurückgeben.
      */
+    private static boolean checkArray(int[] array){
+        for (int i = 0; i < array.length/2; i++) {
+            if (!(array[i] == array[array.length-i-1])){
+                return false;
+            }
+        }
+        return true;
+    }
 
 
 
@@ -179,6 +202,33 @@ class MainProgram {
      * Beispiel: Werden ein Array mit den Elementen 80,7,1,56,11,72,43,37 als erstes und der Wert 17 als zweites Argument übergeben,
      * so soll ein neues(!) Array mit den Werten 97,24,18,73,28,89,60,54 zurückgegeben werden.
      */
+    private static int[] increaseArray(int[] array, int value){
+        int[] newArray = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            newArray[i] = array[i] + value;
+        }
+        return newArray;
+    }
 
+    private static int[] sortArray(int[] array, boolean increasing){
+        int[] newArray = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            newArray[i] = array[i];
+        }
+        int runCount = 0;
+        while(!isSorted(newArray, increasing)){
+            for(int i = 0; i < newArray.length - 1; i++){
+                if ((newArray[i] > newArray[i + 1] && increasing) || (newArray[i] < newArray[i + 1] && !increasing)){
+                    int temp = newArray[i];
+                    newArray[i] = newArray[i + 1];
+                    newArray[i + 1] = temp;
+                }
+            }
+            System.out.println(runCount+ "] ");
+            runCount++;
+        }
+        return newArray;
+    }
 
 }
+
