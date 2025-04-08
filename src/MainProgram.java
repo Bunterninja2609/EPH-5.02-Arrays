@@ -37,7 +37,10 @@ class MainProgram {
         System.out.println("");
         System.out.println("");
         System.out.println("");
-    showArray(sortArray(sortArray(numbers, true), false));
+        showArray(sortArray(sortArray(numbers, true), false));
+        System.out.println("");
+        System.out.print("> ");
+        showArray(stalinSort(numbers, true));
     }
 
     private static void fillArray(int[] array, boolean wN, int maxA){
@@ -236,7 +239,22 @@ class MainProgram {
         return newArray;
     }
     private static int[] stalinSort(int[] array, boolean increasing){
-        return new int[array.length];
+
+        int[] newArray = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            newArray[i] = array[i];
+        }
+        int runCount = 0;
+        while(!isSorted(newArray, increasing)){
+            for(int i = 0; i < newArray.length - 1; i++){
+                if ((newArray[i] > newArray[i + 1] && increasing) || (newArray[i] < newArray[i + 1] && !increasing)){
+                    newArray[i+1] = newArray[i];
+                }
+            }
+            System.out.println(runCount+ "] ");
+            runCount++;
+        }
+        return newArray;
     }
 
 }
