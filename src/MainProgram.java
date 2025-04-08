@@ -14,33 +14,44 @@ class MainProgram {
         fillArray(numbers, withNegatives, maxAbsolute);
 
         showArray(numbers);
+        if (false) {
+            //Hier sehen Sie Beispiele, wie man Methoden mit Rückgabewert aufrufen und dank der Systemkonsole testen kann.
+            //Bevor die Methoden umgesetzt sind, werden sie nur 0 zurückgeben.
+            System.out.println("Summe aller Zahlen im Array: " + sumUp(numbers));
+            System.out.println("In diesem Array gibt es " + countNegatives(numbers) + " negative Zahlen.");
+            System.out.println("Summe der negativen Zahlen: " + sumUpNegatives(numbers));
+            System.out.println("Maximum: " + findMaximum(numbers));
+            System.out.println("Maximum index: " + findMaximumIndex(numbers));
+            System.out.println("Count: " + countMaximum(numbers));
+            System.out.println("Ist sortiert von klein zu groß: " + isSorted(numbers, true));
+            System.out.println("ist sortiert von Groß zu Klein: " + isSorted(numbers, false));
+            System.out.println("Ist Palindrom: " + checkArray(numbers));
+            System.out.println("von Klein zu Groß sortiert: ");
+            System.out.print("> ");
+            showArray(sortArray(numbers, true));
+            System.out.println("von Groß zu klein sortiert: ");
+            System.out.print("> ");
+            showArray(sortArray(numbers, false));
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            showArray(sortArray(sortArray(numbers, true), false));
+            System.out.println("");
+            System.out.print("> ");
+            showArray(stalinSort(numbers, true));
+        }
+        else{
+            showArray(numbers);
+            System.out.println("Bubble sort: ");
+            showArray(sortArray(numbers, true));
+            System.out.println("Stalin sort: ");
+            showArray(stalinSort(numbers, true)));
+            System.out.println("Merge sort");
+            showArray(numbers);
+        }
 
-        //Hier sehen Sie Beispiele, wie man Methoden mit Rückgabewert aufrufen und dank der Systemkonsole testen kann.
-        //Bevor die Methoden umgesetzt sind, werden sie nur 0 zurückgeben.
-        System.out.println("Summe aller Zahlen im Array: " + sumUp(numbers));
-        System.out.println("In diesem Array gibt es " + countNegatives(numbers) + " negative Zahlen.");
-        System.out.println("Summe der negativen Zahlen: " + sumUpNegatives(numbers));
-        System.out.println("Maximum: " + findMaximum(numbers));
-        System.out.println("Maximum index: " + findMaximumIndex(numbers));
-        System.out.println("Count: " + countMaximum(numbers));
-        System.out.println("Ist sortiert von klein zu groß: " + isSorted(numbers, true));
-        System.out.println("ist sortiert von Groß zu Klein: " + isSorted(numbers, false));
-        System.out.println("Ist Palindrom: " + checkArray(numbers));
-        System.out.println("von Klein zu Groß sortiert: " );
-        System.out.print("> ");
-        showArray(sortArray(numbers, true));
-        System.out.println("von Groß zu klein sortiert: " );
-        System.out.print("> ");
-        showArray(sortArray(numbers, false));
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        showArray(sortArray(sortArray(numbers, true), false));
-        System.out.println("");
-        System.out.print("> ");
-        showArray(stalinSort(numbers, true));
     }
 
     private static void fillArray(int[] array, boolean wN, int maxA){
